@@ -21,9 +21,9 @@ pipeline {
             }
             steps {
                 echo 'printenv'
-                echo "env.DEBUG_FLAG"
-                echo 'env.EXIT_STATUS'
-                echo 'env.CC'
+                echo "env.DEBUG_FLAG: ${env.DEBUG_FLAG}"
+                echo "env.EXIT_STATUS: ${env.EXIT_STATUS}"
+                echo "env.CC: ${env.CC}
             }
         }
     }
