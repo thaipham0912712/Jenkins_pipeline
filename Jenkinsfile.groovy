@@ -1,29 +1,12 @@
 pipeline {
-    agent {
-        label "Windows_Node"
-    }
-    environment {
-        // Using returnStdout
-        CC = """${bat(
-            returnStdout: true,
-            script: 'echo "clang"'
-            )}"""
-        // Using returnStatus
-        EXIT_STATUS = """${bat(
-            returnStatus: true,
-            script: 'exit 1'
-            )}"""
+    agent any
+    parameters {
+        string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
     }
     stages {
         stage('Example') {
-            environment{
-                DEBUG_FLAG = '-g'
-            }
             steps {
-                echo 'printenv'
-                echo "env.DEBUG_FLAG: ${env.DEBUG_FLAG}"
-                echo "env.EXIT_STATUS: ${env.EXIT_STATUS}"
-                echo "env.CC: ${env.CC}"
+                echo "${params.Greeting} World!"
             }
         }
     }
