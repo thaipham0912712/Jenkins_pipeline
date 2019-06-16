@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'Windows_Node'
+    }
     stages {
         stage('Example') {
             steps {
