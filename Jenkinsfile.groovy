@@ -2,7 +2,7 @@ pipeline {
     agent {
         label "Windows_Node"
     }
-    evironment {
+    environment {
         // Using returnStdout
         CC = """${sh(
             returnStdout: true,
@@ -16,7 +16,7 @@ pipeline {
     }
     stages {
         stage('Example') {
-            evironment{
+            environment{
                 DEBUG_FLAG = '-g'
             }
             steps {
