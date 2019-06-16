@@ -4,12 +4,12 @@ pipeline {
     }
     environment {
         // Using returnStdout
-        CC = """${sh(
+        CC = """${bat(
             returnStdout: true,
             script: 'echo "clang"'
             )}"""
         // Using returnStatus
-        EXIT_STATUS = """${sh(
+        EXIT_STATUS = """${bat(
             returnStatus: true,
             script: 'exit 1'
             )}"""
@@ -20,7 +20,10 @@ pipeline {
                 DEBUG_FLAG = '-g'
             }
             steps {
-                sh 'printenv'
+                echo 'printenv'
+                echo "env.DEBUG_FLAG"
+                echo 'env.EXIT_STATUS'
+                echo 'env.CC'
             }
         }
     }
