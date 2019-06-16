@@ -1,11 +1,26 @@
 pipeline {
     agent {
-        label 'Windows_Node'
+        label "Windows_Node"
+    }
+    evironment {
+        // Using returnStdout
+        CC = """${sh(
+            returnStdout: true,
+            script: 'echo "clang"'
+            )}"""
+        // Using returnStatus
+        EXIT_STATUS = """${sh(
+            returnStatus: true,
+            script: 'exit 1'
+            )}"""
     }
     stages {
         stage('Example') {
+            evironment{
+                DEBUG_FLAG = '-g'
+            }
             steps {
-                echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+                sh 'printenv'
             }
         }
     }
